@@ -1,7 +1,6 @@
 // This is one implementation of the Yatzy game https://en.wikipedia.org/wiki/Yahtzee
 // Currently, we only handle the scoring part, we don't handle the dice rolls , nor the players 
 
-
 public class Yatzy {
 
     private static final int MINIMAL_NUMBER = 1;
@@ -25,19 +24,30 @@ public class Yatzy {
     /**
      * 
      * @param dice
-     * @return The sum of the dice that reads one
+     * @param numberToCompare
+     * @return the score for the given roll on the given category (number)
      * @throws YatzyException
      */
-    public static int ones(int... dice) throws YatzyException {
+    private static int scoreCompteWithProvidedNumber(int[] dice, int numberToCompare) throws YatzyException {
         checkValidity(dice);
+
         int sum = 0;
-        int numberToCompare = 1;
         for (int die : dice) {
             if (numberToCompare == die) {
                 sum += numberToCompare;
             }
         }
         return sum;
+    }
+
+    /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads one
+     * @throws YatzyException
+     */
+    public static int ones(int... dice) throws YatzyException {
+        return scoreCompteWithProvidedNumber(dice, 1);
     }
 
     /**
@@ -47,15 +57,7 @@ public class Yatzy {
      * @throws YatzyException
      */
     public static int twos(int... dice) throws YatzyException {
-        checkValidity(dice);
-        int sum = 0;
-        int numberToCompare = 2;
-        for (int die : dice) {
-            if (numberToCompare == die) {
-                sum += numberToCompare;
-            }
-        }
-        return sum;
+        return scoreCompteWithProvidedNumber(dice, 2);
     }
 
     /**
@@ -65,15 +67,7 @@ public class Yatzy {
      * @throws YatzyException
      */
     public static int threes(int... dice) throws YatzyException {
-        checkValidity(dice);
-        int sum = 0;
-        int numberToCompare = 3;
-        for (int die : dice) {
-            if (numberToCompare == die) {
-                sum += numberToCompare;
-            }
-        }
-        return sum;
+        return scoreCompteWithProvidedNumber(dice, 3);
     }
 
     /**
@@ -83,15 +77,7 @@ public class Yatzy {
      * @throws YatzyException
      */
     public static int fours(int... dice) throws YatzyException {
-        checkValidity(dice);
-        int sum = 0;
-        int numberToCompare = 4;
-        for (int die : dice) {
-            if (numberToCompare == die) {
-                sum += numberToCompare;
-            }
-        }
-        return sum;
+        return scoreCompteWithProvidedNumber(dice, 4);
     }
 
     /**
@@ -101,15 +87,7 @@ public class Yatzy {
      * @throws YatzyException
      */
     public static int fives(int... dice) throws YatzyException {
-        checkValidity(dice);
-        int sum = 0;
-        int numberToCompare = 5;
-        for (int die : dice) {
-            if (numberToCompare == die) {
-                sum += numberToCompare;
-            }
-        }
-        return sum;
+        return scoreCompteWithProvidedNumber(dice, 5);
     }
 
     /**
@@ -119,15 +97,7 @@ public class Yatzy {
      * @throws YatzyException
      */
     public static int sixes(int... dice) throws YatzyException {
-        checkValidity(dice);
-        int sum = 0;
-        int numberToCompare = 6;
-        for (int die : dice) {
-            if (numberToCompare == die) {
-                sum += numberToCompare;
-            }
-        }
-        return sum;
+        return scoreCompteWithProvidedNumber(dice, 6);
     }
 
     /**
