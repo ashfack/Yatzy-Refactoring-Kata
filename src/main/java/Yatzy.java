@@ -1,4 +1,9 @@
+// This is one implementation of the Yatzy game https://en.wikipedia.org/wiki/Yahtzee
+// Currently, we only handle the scoring part, we don't handle the dice rolls , nor the players 
+
+
 public class Yatzy {
+
     private static final int MINIMAL_NUMBER = 1;
     private static final int MAXIMAL_NUMBER = 6;
 
