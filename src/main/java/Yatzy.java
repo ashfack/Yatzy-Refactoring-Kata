@@ -181,15 +181,14 @@ public class Yatzy {
 
     /**
      * 
-     * @param dice
-     * @return if at least one number is present thrice then the triple of the number, otherwise 0
+     * @param frequencyArray
+     * @param n              : the number of elements we want of the same kind
+     * @return
      */
-    public static int threeOfAKind(int... dice) {
-        int[] frequencyArray = generateFrequencyArray(dice);
-
+    private static int nOfAKind(int[] frequencyArray, int n) {
         for (int index = MAXIMAL_NUMBER - 1; index >= MINIMAL_NUMBER - 1; index--) {
-            if (3 <= frequencyArray[index]) {
-                return (index + 1) * 3;
+            if (n <= frequencyArray[index]) {
+                return (index + 1) * n;
             }
         }
         return 0;
@@ -198,17 +197,25 @@ public class Yatzy {
     /**
      * 
      * @param dice
-     * @return if at least one number is present four times then the quadruple of the number, otherwise 0
+     * @return if at least one number is present thrice then the triple of the
+     *         number, otherwise 0
+     */
+    public static int threeOfAKind(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
+
+        return nOfAKind(frequencyArray, 3);
+    }
+
+    /**
+     * 
+     * @param dice
+     * @return if at least one number is present four times then the quadruple of
+     *         the number, otherwise 0
      */
     public static int fourOfAKind(int... dice) {
         int[] frequencyArray = generateFrequencyArray(dice);
 
-        for (int index = MAXIMAL_NUMBER - 1; index >= MINIMAL_NUMBER - 1; index--) {
-            if (4 <= frequencyArray[index]) {
-                return (index + 1) * 4;
-            }
-        }
-        return 0;
+        return nOfAKind(frequencyArray, 4);
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
