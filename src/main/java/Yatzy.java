@@ -218,70 +218,61 @@ public class Yatzy {
         return nOfAKind(frequencyArray, 4);
     }
 
-    public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[0] == 1 &&
-                tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1)
-            return 15;
-        return 0;
+    /**
+     * 
+     * @param dice
+     * @return If all numbers between one and five are present (and only once) (no
+     *         matter the order) then 15, otherwise 0
+     */
+    public static int smallStraight(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
+        for (int index = MINIMAL_NUMBER - 1; index < MAXIMAL_NUMBER - 1; index++) {
+            if (1 != frequencyArray[index]) {
+                return 0;
+            }
+        }
+        return chance(dice); // We could return 15 directly or [(5 * 6) - (0 * 1 )] / 2
     }
 
-    public static int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-        if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
-            return 20;
-        return 0;
+    /**
+     * 
+     * @param dice
+     * @return If all numbers between two and six are present (and only once) (no
+     *         matter the order) then 20, otherwise 0
+     */
+    public static int largeStraight(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
+        for (int index = MINIMAL_NUMBER; index < MAXIMAL_NUMBER; index++) {
+            if (1 != frequencyArray[index]) {
+                return 0;
+            }
+        }
+        return chance(dice); // We could return 15 directly or [(6 * 7) - (1 * 2)] / 2
     }
 
-    public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        boolean _2 = false;
-        int i;
-        int _2_at = 0;
-        boolean _3 = false;
-        int _3_at = 0;
+    /**
+     * 
+     * @param dice
+     * @return If the dice are two of a kind and three of a kind then the player
+     *         scores the sum of all the dice
+     */
+    public static int fullHouse(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
+        boolean hasExactly2 = false;
+        boolean hasExactly3 = false;
 
-        tallies = new int[6];
-        tallies[d1 - 1] += 1;
-        tallies[d2 - 1] += 1;
-        tallies[d3 - 1] += 1;
-        tallies[d4 - 1] += 1;
-        tallies[d5 - 1] += 1;
-
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 2) {
-                _2 = true;
-                _2_at = i + 1;
+        for (int index = MINIMAL_NUMBER; index < MAXIMAL_NUMBER; index++) {
+            if (2 == frequencyArray[index]) {
+                hasExactly2 = true;
+            } else if (3 == frequencyArray[index]) {
+                hasExactly3 = true;
             }
+        }
 
-        for (i = 0; i != 6; i += 1)
-            if (tallies[i] == 3) {
-                _3 = true;
-                _3_at = i + 1;
-            }
-
-        if (_2 && _3)
-            return _2_at * 2 + _3_at * 3;
-        else
+        if (hasExactly2 && hasExactly3) {
+            return chance(dice); // We could have computed the score on the go
+        } else {
             return 0;
+        }
     }
 }

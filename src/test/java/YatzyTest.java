@@ -91,7 +91,8 @@ public class YatzyTest {
     }
 
     /**
-     * if at least one number is present thrice then the triple of the number, otherwise 0
+     * if at least one number is present thrice then the triple of the number,
+     * otherwise 0
      */
     @Test
     public void threeOfAKind() {
@@ -100,21 +101,33 @@ public class YatzyTest {
         assertEquals(15, Yatzy.threeOfAKind(5, 3, 5, 4, 5));
     }
 
-    /** if at least one number is present four times then the quadruple of the number, otherwise 0 */
+    /**
+     * if at least one number is present four times then the quadruple of the
+     * number, otherwise 0
+     */
     @Test
     public void fourOfAKind() {
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 3));
         assertEquals(12, Yatzy.fourOfAKind(3, 3, 3, 3, 5));
+        assertEquals(12, Yatzy.fourOfAKind(3, 3, 3, 3, 3));
         assertEquals(20, Yatzy.fourOfAKind(5, 5, 5, 4, 5));
     }
 
+    /**
+     * If all numbers between one and five are present (and only once) (no matter
+     * the order) then 15, otherwise 0
+     */
     @Test
     public void smallStraight() {
+        assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
+        assertEquals(0, Yatzy.smallStraight(1, 2, 3, 4, 6));
         assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
         assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
-        assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
     }
 
+    /**
+     * If all numbers between two and six are present (and only once) (no matter the
+     * order) then 20, otherwise 0
+     */
     @Test
     public void largeStraight() {
         assertEquals(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
@@ -122,9 +135,14 @@ public class YatzyTest {
         assertEquals(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
     }
 
+    /**
+     * If the dice are two of a kind and three of a kind, the player scores the sum
+     * of all the dice
+     */
     @Test
     public void fullHouse() {
-        assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
         assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
+        assertEquals(0, Yatzy.fullHouse(2, 2, 2, 2, 2));
+        assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
     }
 }
