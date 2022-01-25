@@ -1,4 +1,6 @@
 public class Yatzy {
+    private static final int MINIMAL_NUMBER = 1;
+    private static final int MAXIMAL_NUMBER = 6;
 
     /**
      * 
@@ -48,7 +50,7 @@ public class Yatzy {
         return sum;
     }
 
-     /**
+    /**
      * 
      * @param dice
      * @return The sum of the dice that reads four
@@ -64,7 +66,7 @@ public class Yatzy {
         return sum;
     }
 
-     /**
+    /**
      * 
      * @param dice
      * @return The sum of the dice that reads five
@@ -80,7 +82,7 @@ public class Yatzy {
         return sum;
     }
 
-     /**
+    /**
      * 
      * @param dice
      * @return The sum of the dice that reads six
@@ -96,24 +98,45 @@ public class Yatzy {
         return sum;
     }
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        int total = 0;
-        total += d1;
-        total += d2;
-        total += d3;
-        total += d4;
-        total += d5;
-        return total;
+    /**
+     * 
+     * @param dice
+     * @return The sum of all dices
+     */
+    public static int chance(int... dice) {
+        int sum = 0;
+        for (int die : dice) {
+            sum += die;
+        }
+        return sum;
     }
 
+    /**
+     * 
+     * @param dice
+     * @return in the output array, array[x] contains the frequency of number x+1 in the given dice roll
+     */
+    private static int[] generateFrequencyArray(int... dice) {
+        int[] frequencyArray = new int[MAXIMAL_NUMBER - MINIMAL_NUMBER + 1];
+        for (int die : dice) {
+            frequencyArray[die - 1]++;
+        }
+        return frequencyArray;
+    }
+
+    /**
+     * 
+     * @param dice
+     * @return
+     */
     public static int yatzyGame(int... dice) {
-        int[] counts = new int[6];
-        for (int die : dice)
-            counts[die - 1]++;
-        for (int i = 0; i != 6; i++)
-            if (counts[i] == 5)
-                return 50;
-        return 0;
+        int[] frequencyArray = generateFrequencyArray(dice);
+        for (int frequency : frequencyArray) {
+            if (frequency != 0 && frequency != dice.length) {
+                return 0;
+            }
+        }
+        return 50;
     }
 
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
