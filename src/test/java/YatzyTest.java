@@ -4,23 +4,6 @@ import static org.junit.Assert.*;
 public class YatzyTest {
 
     @Test
-    public void chance_scores_sum_of_all_dice() {
-        int expected = 15;
-        int actual = Yatzy.chance(2, 3, 4, 5, 1);
-        assertEquals(expected, actual);
-        assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
-    }
-
-    @Test
-    public void yatzy_scores_50() {
-        int expected = 50;
-        int actual = Yatzy.yatzyGame(4, 4, 4, 4, 4);
-        assertEquals(expected, actual);
-        assertEquals(50, Yatzy.yatzyGame(6, 6, 6, 6, 6));
-        assertEquals(0, Yatzy.yatzyGame(6, 6, 6, 6, 3));
-    }
-
-    @Test
     public void test_1s() {
         assertEquals(1, Yatzy.ones(1, 2, 3, 4, 5));
         assertEquals(2, Yatzy.ones(1, 2, 1, 4, 5));
@@ -61,6 +44,25 @@ public class YatzyTest {
         assertEquals(18, Yatzy.sixes(6, 5, 6, 6, 5));
     }
 
+
+    @Test
+    public void chance_scores_sum_of_all_dice() {
+        int expected = 15;
+        int actual = Yatzy.chance(2, 3, 4, 5, 1);
+        assertEquals(expected, actual);
+        assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
+    }
+
+    @Test
+    public void yatzy_scores_50() {
+        int expected = 50;
+        int actual = Yatzy.yatzyGame(4, 4, 4, 4, 4);
+        assertEquals(expected, actual);
+        assertEquals(50, Yatzy.yatzyGame(6, 6, 6, 6, 6));
+        assertEquals(0, Yatzy.yatzyGame(6, 6, 6, 6, 3));
+    }
+
+   
     @Test
     public void one_pair() {
         assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
