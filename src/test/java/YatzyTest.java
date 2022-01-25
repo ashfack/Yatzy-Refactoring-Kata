@@ -74,6 +74,7 @@ public class YatzyTest {
     @Test
     public void highestPair() {
         assertEquals(0, Yatzy.highestPair(5, 3, 6, 4, 1));
+        assertEquals(4, Yatzy.highestPair(1, 1, 3, 2, 2));
         assertEquals(6, Yatzy.highestPair(3, 4, 3, 5, 6));
         assertEquals(10, Yatzy.highestPair(5, 3, 3, 3, 5));
         assertEquals(12, Yatzy.highestPair(5, 3, 6, 6, 5));
@@ -89,18 +90,22 @@ public class YatzyTest {
         assertEquals(16, Yatzy.highestTwoPairs(3, 3, 5, 5, 5));
     }
 
+    /**
+     * if at least one number is present thrice then the triple of the number, otherwise 0
+     */
     @Test
-    public void three_of_a_kind() {
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
-        assertEquals(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
+    public void threeOfAKind() {
+        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 4, 5));
+        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 5));
+        assertEquals(15, Yatzy.threeOfAKind(5, 3, 5, 4, 5));
     }
 
+    /** if at least one number is present four times then the quadruple of the number, otherwise 0 */
     @Test
-    public void four_of_a_knd() {
-        assertEquals(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
-        assertEquals(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
-        assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
+    public void fourOfAKind() {
+        assertEquals(12, Yatzy.fourOfAKind(3, 3, 3, 3, 5));
+        assertEquals(20, Yatzy.fourOfAKind(5, 5, 5, 4, 5));
+        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 3));
     }
 
     @Test
