@@ -1,77 +1,98 @@
 public class Yatzy {
-   
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
+
+    /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads one
+     */
+    public static int ones(int... dice) {
         int sum = 0;
-        if (d1 == 1)
-            sum++;
-        if (d2 == 1)
-            sum++;
-        if (d3 == 1)
-            sum++;
-        if (d4 == 1)
-            sum++;
-        if (d5 == 1)
-            sum++;
-
-        return sum;
-    }
-
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 2)
-            sum += 2;
-        if (d2 == 2)
-            sum += 2;
-        if (d3 == 2)
-            sum += 2;
-        if (d4 == 2)
-            sum += 2;
-        if (d5 == 2)
-            sum += 2;
-        return sum;
-    }
-
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;
-        s = 0;
-        if (d1 == 3)
-            s += 3;
-        if (d2 == 3)
-            s += 3;
-        if (d3 == 3)
-            s += 3;
-        if (d4 == 3)
-            s += 3;
-        if (d5 == 3)
-            s += 3;
-        return s;
-    }
-
-    public static int fours(int... dice) {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
+        int numberToCompare = 1;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
             }
         }
         return sum;
     }
 
-    public static int fives(int... dice) {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+    /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads two
+     */
+    public static int twos(int... dice) {
+        int sum = 0;
+        int numberToCompare = 2;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
+            }
+        }
+        return sum;
     }
 
+    /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads three
+     */
+    public static int threes(int... dice) {
+        int sum = 0;
+        int numberToCompare = 3;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
+            }
+        }
+        return sum;
+    }
+
+     /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads four
+     */
+    public static int fours(int... dice) {
+        int sum = 0;
+        int numberToCompare = 4;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
+            }
+        }
+        return sum;
+    }
+
+     /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads five
+     */
+    public static int fives(int... dice) {
+        int sum = 0;
+        int numberToCompare = 5;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
+            }
+        }
+        return sum;
+    }
+
+     /**
+     * 
+     * @param dice
+     * @return The sum of the dice that reads six
+     */
     public static int sixes(int... dice) {
         int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
+        int numberToCompare = 6;
+        for (int die : dice) {
+            if (numberToCompare == die) {
+                sum += numberToCompare;
+            }
+        }
         return sum;
     }
 
