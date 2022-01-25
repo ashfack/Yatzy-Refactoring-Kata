@@ -2,12 +2,29 @@ public class Yatzy {
     private static final int MINIMAL_NUMBER = 1;
     private static final int MAXIMAL_NUMBER = 6;
 
+    private static final int NB_ROLLS = 5;
+
+    public static void checkValidity(int... dice) throws YatzyException {
+        if (null == dice || dice.length != NB_ROLLS) {
+            throw new YatzyException("The given roll does not contain the appropriate number ("
+                    + NB_ROLLS + ")");
+        }
+        for (int die : dice) {
+            if (MINIMAL_NUMBER > die || die > MAXIMAL_NUMBER) {
+                throw new YatzyException(
+                        "The numbers are not in appropriate range (" + MINIMAL_NUMBER + ", " + MAXIMAL_NUMBER + ")");
+            }
+        }
+    }
+
     /**
      * 
      * @param dice
      * @return The sum of the dice that reads one
+     * @throws YatzyException
      */
-    public static int ones(int... dice) {
+    public static int ones(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 1;
         for (int die : dice) {
@@ -22,8 +39,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of the dice that reads two
+     * @throws YatzyException
      */
-    public static int twos(int... dice) {
+    public static int twos(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 2;
         for (int die : dice) {
@@ -38,8 +57,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of the dice that reads three
+     * @throws YatzyException
      */
-    public static int threes(int... dice) {
+    public static int threes(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 3;
         for (int die : dice) {
@@ -54,8 +75,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of the dice that reads four
+     * @throws YatzyException
      */
-    public static int fours(int... dice) {
+    public static int fours(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 4;
         for (int die : dice) {
@@ -70,8 +93,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of the dice that reads five
+     * @throws YatzyException
      */
-    public static int fives(int... dice) {
+    public static int fives(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 5;
         for (int die : dice) {
@@ -86,8 +111,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of the dice that reads six
+     * @throws YatzyException
      */
-    public static int sixes(int... dice) {
+    public static int sixes(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         int numberToCompare = 6;
         for (int die : dice) {
@@ -102,8 +129,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return The sum of all dices
+     * @throws YatzyException
      */
-    public static int chance(int... dice) {
+    public static int chance(int... dice) throws YatzyException {
+        checkValidity(dice);
         int sum = 0;
         for (int die : dice) {
             sum += die;
@@ -116,8 +145,10 @@ public class Yatzy {
      * @param dice
      * @return in the output array, array[x] contains the frequency of number x+1 in
      *         the given dice roll
+     * @throws YatzyException
      */
-    private static int[] generateFrequencyArray(int... dice) {
+    private static int[] generateFrequencyArray(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = new int[MAXIMAL_NUMBER - MINIMAL_NUMBER + 1];
         for (int die : dice) {
             frequencyArray[die - 1]++;
@@ -129,8 +160,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return 50 if all numbers are same, 0 otherwise
+     * @throws YatzyException
      */
-    public static int yatzyGame(int... dice) {
+    public static int yatzyGame(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         for (int frequency : frequencyArray) {
             if (frequency != 0 && frequency != dice.length) {
@@ -145,8 +178,10 @@ public class Yatzy {
      * @param dice
      * @return the double of the highest digit if present at least twice, otherwise
      *         0
+     * @throws YatzyException
      */
-    public static int highestPair(int... dice) {
+    public static int highestPair(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         for (int index = MAXIMAL_NUMBER - 1; index >= MINIMAL_NUMBER - 1; index--) {
             if (2 <= frequencyArray[index]) {
@@ -160,8 +195,10 @@ public class Yatzy {
      * 
      * @param dice
      * @return the highest two pairs double, otherwise 0
+     * @throws YatzyException
      */
-    public static int highestTwoPairs(int... dice) {
+    public static int highestTwoPairs(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         int n = 0;
         int score = 0;
@@ -199,8 +236,10 @@ public class Yatzy {
      * @param dice
      * @return if at least one number is present thrice then the triple of the
      *         number, otherwise 0
+     * @throws YatzyException
      */
-    public static int threeOfAKind(int... dice) {
+    public static int threeOfAKind(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
 
         return nOfAKind(frequencyArray, 3);
@@ -211,8 +250,10 @@ public class Yatzy {
      * @param dice
      * @return if at least one number is present four times then the quadruple of
      *         the number, otherwise 0
+     * @throws YatzyException
      */
-    public static int fourOfAKind(int... dice) {
+    public static int fourOfAKind(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
 
         return nOfAKind(frequencyArray, 4);
@@ -223,8 +264,10 @@ public class Yatzy {
      * @param dice
      * @return If all numbers between one and five are present (and only once) (no
      *         matter the order) then 15, otherwise 0
+     * @throws YatzyException
      */
-    public static int smallStraight(int... dice) {
+    public static int smallStraight(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         for (int index = MINIMAL_NUMBER - 1; index < MAXIMAL_NUMBER - 1; index++) {
             if (1 != frequencyArray[index]) {
@@ -239,8 +282,10 @@ public class Yatzy {
      * @param dice
      * @return If all numbers between two and six are present (and only once) (no
      *         matter the order) then 20, otherwise 0
+     * @throws YatzyException
      */
-    public static int largeStraight(int... dice) {
+    public static int largeStraight(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         for (int index = MINIMAL_NUMBER; index < MAXIMAL_NUMBER; index++) {
             if (1 != frequencyArray[index]) {
@@ -255,8 +300,10 @@ public class Yatzy {
      * @param dice
      * @return If the dice are two of a kind and three of a kind then the player
      *         scores the sum of all the dice
+     * @throws YatzyException
      */
-    public static int fullHouse(int... dice) {
+    public static int fullHouse(int... dice) throws YatzyException {
+        checkValidity(dice);
         int[] frequencyArray = generateFrequencyArray(dice);
         boolean hasExactly2 = false;
         boolean hasExactly3 = false;
