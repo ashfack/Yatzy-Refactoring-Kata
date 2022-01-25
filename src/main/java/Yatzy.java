@@ -114,7 +114,8 @@ public class Yatzy {
     /**
      * 
      * @param dice
-     * @return in the output array, array[x] contains the frequency of number x+1 in the given dice roll
+     * @return in the output array, array[x] contains the frequency of number x+1 in
+     *         the given dice roll
      */
     private static int[] generateFrequencyArray(int... dice) {
         int[] frequencyArray = new int[MAXIMAL_NUMBER - MINIMAL_NUMBER + 1];
@@ -127,7 +128,7 @@ public class Yatzy {
     /**
      * 
      * @param dice
-     * @return
+     * @return 50 if all numbers are same, 0 otherwise
      */
     public static int yatzyGame(int... dice) {
         int[] frequencyArray = generateFrequencyArray(dice);
@@ -139,38 +140,43 @@ public class Yatzy {
         return 50;
     }
 
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6 - at - 1] >= 2)
-                return (6 - at) * 2;
+    /**
+     * 
+     * @param dice
+     * @return the double of the highest digit if present at least twice, otherwise
+     *         0
+     */
+    public static int highestPair(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
+        for (int index = MAXIMAL_NUMBER - 1; index >= MINIMAL_NUMBER - 1; index--) {
+            if (2 <= frequencyArray[index]) {
+                return (index + 1) * 2;
+            }
+        }
         return 0;
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
+    /**
+     * 
+     * @param dice
+     * @return the highest two pairs double, otherwise 0
+     */
+    public static int highestTwoPairs(int... dice) {
+        int[] frequencyArray = generateFrequencyArray(dice);
         int n = 0;
         int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
+
+        for (int index = MAXIMAL_NUMBER - 1; index >= MINIMAL_NUMBER - 1; index--) {
+            if (2 <= frequencyArray[index]) {
                 n++;
-                score += (6 - i);
+                score += (index + 1) * 2;
             }
-        if (n == 2)
-            return score * 2;
-        else
+        }
+        if (n == 2) {
+            return score;
+        } else {
             return 0;
+        }
     }
 
     public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {

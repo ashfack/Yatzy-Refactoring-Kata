@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 public class YatzyTest {
 
     /**
-     * The following 6 methods test the score of the sum of the dice that reads one, two, three, four, five or six, respectively.
+     * The following 6 methods test the score of the sum of the dice that reads one,
+     * two, three, four, five or six, respectively.
      */
 
     @Test
@@ -57,6 +58,9 @@ public class YatzyTest {
         assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
     }
 
+    /**
+     * 50 if all numbers are same, 0 otherwise
+     */
     @Test
     public void yatzy_scores_50() {
         assertEquals(0, Yatzy.yatzyGame(6, 6, 6, 6, 3));
@@ -64,17 +68,25 @@ public class YatzyTest {
         assertEquals(50, Yatzy.yatzyGame(6, 6, 6, 6, 6));
     }
 
+    /**
+     * the double of the highest digit if present at least twice, otherwise 0
+     */
     @Test
-    public void one_pair() {
-        assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
-        assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
-        assertEquals(12, Yatzy.score_pair(5, 3, 6, 6, 5));
+    public void highestPair() {
+        assertEquals(0, Yatzy.highestPair(5, 3, 6, 4, 1));
+        assertEquals(6, Yatzy.highestPair(3, 4, 3, 5, 6));
+        assertEquals(10, Yatzy.highestPair(5, 3, 3, 3, 5));
+        assertEquals(12, Yatzy.highestPair(5, 3, 6, 6, 5));
     }
 
+    /**
+     * the highest two pairs double, otherwise 0
+     */
     @Test
-    public void two_Pair() {
-        assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
-        assertEquals(16, Yatzy.two_pair(3, 3, 5, 5, 5));
+    public void highestTwoPairs() {
+        assertEquals(12, Yatzy.highestTwoPairs(1, 1, 5, 4, 5));
+        assertEquals(16, Yatzy.highestTwoPairs(3, 3, 5, 4, 5));
+        assertEquals(16, Yatzy.highestTwoPairs(3, 3, 5, 5, 5));
     }
 
     @Test
