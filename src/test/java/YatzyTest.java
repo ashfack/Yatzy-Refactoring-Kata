@@ -103,9 +103,9 @@ public class YatzyTest {
     /** if at least one number is present four times then the quadruple of the number, otherwise 0 */
     @Test
     public void fourOfAKind() {
+        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 3));
         assertEquals(12, Yatzy.fourOfAKind(3, 3, 3, 3, 5));
         assertEquals(20, Yatzy.fourOfAKind(5, 5, 5, 4, 5));
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 3));
     }
 
     @Test
