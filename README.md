@@ -19,5 +19,11 @@ Most of the methods could handle a roll with different number ( than 5) with no 
 
 If we want to change the higher bound (for example with a die with 10 faces) we would need to add extra methods (categories) but the existing will still work.
 
-nOfAKind and generateFrequencyArray are two private methods that have been added.
+nOfAKind, generateFrequencyArray, scoreCompteWithProvidedNumber are three private methods that have been added to avoid code duplication since they have no business value they are private and hence not tested.
+
+For the method checkValidity, if we were to use Aspects, it would be better.
+We could use Spring Aspect but this would be overkill
+https://gayerie.dev/docs/spring/spring/aop.html
+
+
 
