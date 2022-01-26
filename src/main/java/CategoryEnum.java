@@ -1,3 +1,4 @@
+// List of Yatzy Categories
 public enum CategoryEnum {
     ONES,
     TWOS,
@@ -5,7 +6,7 @@ public enum CategoryEnum {
     FOURS,
     FIVES,
     SIXES,
-    
+
     CHANCE,
 
     YATZY_GAME,

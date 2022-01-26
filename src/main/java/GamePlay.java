@@ -6,9 +6,13 @@ public class GamePlay {
 
     private int playerScore;
 
+    private boolean[] hasCategoryBeenPlayedArray;
+
     public GamePlay(String playerName) {
         this.playerName = playerName;
         this.dice = new int[5];
+
+        this.hasCategoryBeenPlayedArray = new boolean[CategoryEnum.values().length];
     }
 
     public int getPlayerScore() {
@@ -21,7 +25,11 @@ public class GamePlay {
         }
     }
 
-    public void placeBetOnGivenCategory(CategoryEnum categoryEnum) throws YatzyException {
+    public void placeBetOnGivenCategory(CategoryEnum categoryEnum) throws YatzyException, GameException {
+        if (this.hasCategoryBeenPlayedArray[categoryEnum.ordinal()]) {
+            System.err.println("Already placed bet in this category");
+            throw new GameException("Already placed bet in this category");
+        }
         switch (categoryEnum) {
             case ONES:
                 playerScore += Yatzy.ones(dice);
@@ -69,9 +77,10 @@ public class GamePlay {
                 playerScore += Yatzy.yatzyGame(dice);
                 break;
             default:
-                System.out.println("Category unknown");
-                break;
+                System.err.println("Category unknown");
+                throw new GameException("Category unknown");
         }
+        this.hasCategoryBeenPlayedArray[categoryEnum.ordinal()] = true;
     }
 
     public void displayScore() {
